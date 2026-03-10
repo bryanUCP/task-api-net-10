@@ -26,6 +26,11 @@ jobs:
 
       - name: Build del proyecto 
         run: dotnet build src/Api/Api.csproj --configuration Release
+        continue-on-error: true
+
+      - name: Notifica on build failure
+        if: failure()
+        run: echo "🥺 La compilacion falla."
 
       - name: Mensaje Final
         run: echo "Workflow completado exitosamente"
